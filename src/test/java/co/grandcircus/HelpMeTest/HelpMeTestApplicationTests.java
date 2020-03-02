@@ -1,5 +1,6 @@
 package co.grandcircus.HelpMeTest;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -14,10 +15,18 @@ import org.springframework.test.web.servlet.MockMvc;
 public class HelpMeTestApplicationTests {
 
 	@Autowired
+	private HelpMeTestController controller;
+	
+	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
 		this.mockMvc.perform(get("/")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void contexLoads() throws Exception {
+		assertNotNull(controller);
 	}
 }
